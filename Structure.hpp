@@ -1865,6 +1865,26 @@ public:
         return _nodes.empty();
     }
 
+    void clear()
+    {
+        OrthogonalLink<T> *link, *next;
+        for (OrthogonalNode<T>* node : _nodes)
+        {
+            link = node->get_tail_link();
+            while (link != nullptr)
+            {
+                next = link->get_tail_link();
+                delete link;
+                link = next;
+            }
+        }
+        while (!_nodes.empty())
+        {
+            delete _nodes.back();
+            _nodes.pop_back();
+        }
+    }
+    
     const std::vector<T> data() const
     {
         std::vector<T> result;
@@ -1877,6 +1897,7 @@ public:
 
     void load_data(const std::list<T>& values, const std::vector<std::vector<int>>& mat)
     {
+        clear();
         for (const T& value : values)
         {
             _nodes.push_back(new OrthogonalNode(value));
