@@ -78,19 +78,28 @@ public:
         return o;
     }
 
-    void operator=(const LinkedListNode<T>& node)
+    LinkedListNode<T>& operator=(const LinkedListNode<T>& node)
     {
-        _data = node._data;
+        if (this != &node)
+        {
+            _data = node._data;
+        }
+        return *this;
     }
 
-    void operator=(const LinkedListNode<T>&& node)
+    LinkedListNode<T>& operator=(const LinkedListNode<T>&& node)
     {
-        _data = std::move(node._data);
+        if (this != &node)
+        {
+            _data = std::move(node._data);
+        }
+        return *this;
     }
 
-    void operator=(const T& value)
+    LinkedListNode<T>& operator=(const T& value)
     {
         _data = value;
+        return *this;
     }
 
     const bool operator<(const LinkedListNode<T>& node) const
@@ -246,17 +255,22 @@ public:
         }
     }
 
-    void operator=(const BinaryTreeNode<T>& node)
+    BinaryTreeNode<T>& operator=(const BinaryTreeNode<T>& node)
     {
-        _data = node._data;
-        _parent = node._parent;
-        _left = node._left;
-        _right = node._right;
+        if (this != &node)
+        {
+            _data = node._data;
+            _parent = node._parent;
+            _left = node._left;
+            _right = node._right;
+        }
+        return *this;
     }
 
-    void operator=(const T& value)
+    BinaryTreeNode<T>& operator=(const T& value)
     {
         _data = value;
+        return *this;
     }
 
     friend std::ostream& operator<<(std::ostream& o, const BinaryTreeNode<T>& node)
