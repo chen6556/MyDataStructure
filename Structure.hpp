@@ -1198,7 +1198,7 @@ public:
         return false;
     }
 
-    BinaryTreeNode<T>* find()
+    BinaryTreeNode<T>* find(const T& value)
     {
         BinaryTreeNode<T>* node = _root;
         while (node != nullptr)
@@ -1219,7 +1219,7 @@ public:
         return nullptr;
     }
 
-    const BinaryTreeNode<T>* find() const
+    const BinaryTreeNode<T>* find(const T& value) const
     {
         BinaryTreeNode<T>* node = _root;
         while (node != nullptr)
