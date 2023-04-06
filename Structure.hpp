@@ -537,20 +537,25 @@ public:
 namespace BinaryTree
 {
     template <typename T>
-    BinaryTreeNode<T>* create_tree_preorder(const std::list<T>& values, BinaryTreeNode<T>* node, const T& none = NULL)
+    BinaryTreeNode<T>* create_tree_preorder(std::list<T>& values, const T& none = NULL)
     {
-        if (values.front() == none)
+        if (values.empty())
+        {
+            return nullptr;
+        }
+        else if (values.front() == none)
         {
             values.pop_front();
+            return nullptr;
         }
         else
         {
-            node = new BinaryTreeNode(values.front());
+            BinaryTreeNode<T>* node = new BinaryTreeNode(values.front());
             values.pop_front();
-            create_tree_preorder(values, node->get_left());
-            create_tree_preorder(values, node->get_right());
+            node->set_left(create_tree_preorder(values, none));
+            node->set_right(create_tree_preorder(values, none));
+            return node;
         }
-        return node;
     }
 
     template <typename T>
