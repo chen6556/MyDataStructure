@@ -608,7 +608,7 @@ namespace BinaryTree
     }
 
     template <typename T>
-    const std::list<T> preoder_traverse(const BinaryTreeNode<T>* node, std::list<T>& values = std::list<T>())
+    const std::list<T> preorder_traverse(const BinaryTreeNode<T>* node, std::list<T>& values = std::list<T>())
     {
         if (node != nullptr)
         {
